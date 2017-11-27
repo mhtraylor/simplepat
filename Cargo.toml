@@ -7,10 +7,6 @@ authors = ["Matthew Traylor <mhtraylor@hotmail.com>"]
 name="simplepat"
 path="src/lib.rs"
 
-[[bin]]
-name="bin"
-path="src/demos/bin.rs"
-
 [dependencies.sdl2]
 version = "*"
 default-features = false
