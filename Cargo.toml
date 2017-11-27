@@ -1,0 +1,12 @@
+[package]
+name = "simplepat"
+version = "0.1.0"
+authors = ["Matthew Traylor <mhtraylor@hotmail.com>"]
+
+[dependencies.sdl2]
+version = "*"
+default-features = false
+features = ["image"]
+
+[dependencies]
+vecmath = "*"
