@@ -9,7 +9,7 @@ path="src/lib.rs"
 
 [[bin]]
 name="bin"
-path="src/bin.rs"
+path="src/demos/bin.rs"
 
 [dependencies.sdl2]
 version = "*"
