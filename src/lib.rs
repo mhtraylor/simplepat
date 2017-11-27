@@ -1,3 +1,6 @@
+extern crate sdl2;
+extern crate vecmath;
+
 #[cfg(test)]
 mod tests {
     #[test]
