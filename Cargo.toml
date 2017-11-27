@@ -3,6 +3,14 @@ name = "simplepat"
 version = "0.1.0"
 authors = ["Matthew Traylor <mhtraylor@hotmail.com>"]
 
+[lib]
+name="simplepat"
+path="src/lib.rs"
+
+[[bin]]
+name="bin"
+path="src/bin.rs"
+
 [dependencies.sdl2]
 version = "*"
 default-features = false
