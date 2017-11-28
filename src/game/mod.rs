@@ -1,6 +1,7 @@
 //! Main game, world, etc. controllers.
 
 pub mod world;
+pub mod stage;
 
 use sdl2::{EventPump, Sdl};
 use sdl2::render::WindowCanvas;
@@ -14,7 +15,8 @@ use game::world::World;
 /// state, rendering, and updates.
 pub struct Game {
     clock: Clock,
-    world: World,
+    /// The game world.
+    pub world: World,
     canvas: WindowCanvas,
     events: EventPump,
 }
@@ -55,7 +57,7 @@ impl Game {
             }
 
             // Update world
-            self.clock.tick();
+            self.world.update(self.clock.tick());
             // Render world
             self.canvas.clear();
             self.canvas.present();
