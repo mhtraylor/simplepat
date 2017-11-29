@@ -4,39 +4,37 @@ pub mod world;
 pub mod stage;
 
 use sdl2::{EventPump, Sdl};
-use sdl2::render::WindowCanvas;
+use sdl2::render::{TextureCreator, WindowCanvas};
+use sdl2::image::LoadTexture;
+use sdl2::video::WindowContext;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 
+use std::path::Path;
+
 use core::clock::Clock;
 use game::world::World;
+use entity::Entity;
+use component::sprite::Sprite;
 
 /// Central game controller, handles all entities'
 /// state, rendering, and updates.
-pub struct Game {
+pub struct Game<'a> {
     clock: Clock,
     /// The game world.
-    pub world: World,
-    canvas: WindowCanvas,
+    pub world: World<'a>,
+    /// The game canvas.
+    pub canvas: &'a mut WindowCanvas,
     events: EventPump,
 }
 
-impl Game {
+impl<'a> Game<'a> {
     /// Creates a new Game.
-    pub fn new(name: &str, w: u32, h: u32, sdl: Sdl) -> Game {
-        let video = sdl.video().unwrap();
-        let window = video
-            .window(name, w, h)
-            .position_centered()
-            .opengl()
-            .build()
-            .unwrap();
-
-
+    pub fn new(w: u32, h: u32, canvas: &'a mut WindowCanvas, sdl: Sdl) -> Game<'a> {
         Game {
             clock: Clock::new(sdl.timer().unwrap()),
             world: World::new(w, h),
-            canvas: window.into_canvas().present_vsync().build().unwrap(),
+            canvas: canvas,
             events: sdl.event_pump().unwrap(),
         }
     }
@@ -56,10 +54,13 @@ impl Game {
                 }
             }
 
+            let delta = self.clock.tick();
+
             // Update world
-            self.world.update(self.clock.tick());
+            self.world.update(delta);
             // Render world
             self.canvas.clear();
+            self.world.render(self.canvas, delta);
             self.canvas.present();
         }
     }

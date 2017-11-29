@@ -7,6 +7,8 @@ pub extern crate vecmath;
 
 pub mod core;
 pub mod game;
+pub mod component;
+pub mod entity;
 
 #[cfg(test)]
 mod tests {
