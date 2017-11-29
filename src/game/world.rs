@@ -39,7 +39,7 @@ impl World {
     pub fn update(&self, delta: f64) -> () {
         self.active_stage.map(|a| {
             self.stages.get(&a).map(|s| {
-                println!("{}", a);
+                println!("{}", delta);
             })
         });
     }
