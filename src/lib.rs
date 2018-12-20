@@ -1,5 +1,14 @@
-extern crate sdl2;
-extern crate vecmath;
+#![deny(missing_docs)]
+
+//! A simple game engine.
+
+pub extern crate sdl2;
+pub extern crate vecmath;
+
+pub mod core;
+pub mod game;
+pub mod component;
+pub mod entity;
 
 #[cfg(test)]
 mod tests {
